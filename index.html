@@ -441,34 +441,6 @@
     line-height:1.4;
   }
 
-  /* ---- Photo ---- */
-  .photo-frame{
-    display:block;
-    max-width: 300px;
-    width: 80%;
-    margin: 30px auto;
-    background:#fff;
-    padding: 12px 12px 34px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.3);
-    transform: rotate(-3deg);
-    position:relative;
-    border: 1px solid rgba(212,175,122,.5);
-  }
-  .photo-frame img{
-    display:block;
-    width:100%;
-    height:auto;
-    border-radius:2px;
-  }
-  .photo-caption{
-    position:absolute;
-    bottom:8px; left:0; right:0;
-    text-align:center;
-    font-family:'Great Vibes', cursive;
-    font-size: 1.3rem;
-    color: var(--ink);
-  }
-
   /* ---- Interactive element ---- */
   .interactive-box{
     text-align:center;
@@ -533,6 +505,36 @@
     animation: burstOut 1s ease-out forwards;
   }
 
+  /* ---- Secret dedication trigger ---- */
+  .secret-wrap{
+    text-align:center;
+    margin: 34px 0 6px;
+  }
+  .secret-btn{
+    position:relative;
+    background:none;
+    border: 1px solid rgba(212,175,122,.5);
+    color:#a97d5d;
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: .95rem;
+    letter-spacing: .5px;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor:pointer;
+    transition: transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .secret-btn:hover{
+    background: rgba(212,175,122,.1);
+    transform: translateY(-2px);
+    color:#8a2e42;
+  }
+  .secret-btn .secret-icon{
+    display:inline-block;
+    margin-right:6px;
+    animation: heartbeat 2.6s ease-in-out infinite;
+  }
+
   .signature-block{
     margin-top: 40px;
     text-align:right;
@@ -572,6 +574,150 @@
     100%{ transform: translateY(-95vh) translateX(-15px) scale(.4); opacity:0; }
   }
 
+  /* ============= SECRET DEDICATION MODAL ============= */
+  #dedicationModal{
+    position:fixed; inset:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+    background: rgba(10,5,7,.78);
+    backdrop-filter: blur(6px);
+    opacity:0;
+    visibility:hidden;
+    transition: opacity .5s ease, visibility .5s ease;
+  }
+  #dedicationModal.open{
+    opacity:1;
+    visibility:visible;
+  }
+
+  .dedication-card{
+    position:relative;
+    max-width: 560px;
+    width:100%;
+    max-height: 88vh;
+    overflow-y:auto;
+    background: linear-gradient(180deg, var(--cream), #fbeedb);
+    border-radius: 8px;
+    padding: 50px 34px 40px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(212,175,122,.4);
+    text-align:center;
+    transform: scale(.85) translateY(20px);
+    opacity:0;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+  }
+  #dedicationModal.open .dedication-card{
+    transform: scale(1) translateY(0);
+    opacity:1;
+  }
+
+  .dedication-close{
+    position:absolute;
+    top:14px; right:14px;
+    width:32px; height:32px;
+    border-radius:50%;
+    border: 1px solid rgba(212,175,122,.5);
+    background: rgba(255,255,255,.4);
+    color:#8a2e42;
+    font-size: 1rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .dedication-close:hover{ background: rgba(212,175,122,.25); transform: rotate(90deg); }
+
+  .dedication-eyebrow{
+    font-size:.78rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #a97d5d;
+    margin-bottom: 6px;
+  }
+  .dedication-title{
+    font-family:'Great Vibes', cursive;
+    font-size: clamp(1.9rem, 5.5vw, 2.6rem);
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height:1.2;
+  }
+
+  .photo-frame{
+    display:inline-block;
+    max-width: 260px;
+    width: 78%;
+    margin: 0 auto 6px;
+    background:#fff;
+    padding: 12px 12px 32px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.3);
+    transform: rotate(-3deg);
+    position:relative;
+    border: 1px solid rgba(212,175,122,.5);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:2px;
+  }
+  .photo-caption{
+    position:absolute;
+    bottom:8px; left:0; right:0;
+    text-align:center;
+    font-family:'Great Vibes', cursive;
+    font-size: 1.1rem;
+    color: var(--ink);
+    padding: 0 6px;
+  }
+
+  .song-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin: 20px auto 26px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    border:none;
+    color: #3a1a12;
+    font-family:'Playfair Display', serif;
+    font-weight:600;
+    font-style: italic;
+    font-size: .92rem;
+    padding: 11px 26px;
+    border-radius: 40px;
+    cursor:pointer;
+    letter-spacing: .5px;
+    box-shadow: 0 8px 20px rgba(212,175,122,.35), 0 0 0 1px rgba(255,255,255,.15) inset;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .song-btn:hover{ transform: translateY(-2px); }
+  .song-btn .note-icon{ font-size:1.1rem; }
+  .song-btn.playing{
+    animation: pulseBtn 1.8s ease-in-out infinite;
+  }
+  @keyframes pulseBtn{
+    0%,100%{ box-shadow: 0 8px 20px rgba(212,175,122,.35), 0 0 0 1px rgba(255,255,255,.15) inset; }
+    50%{ box-shadow: 0 8px 34px rgba(212,175,122,.6), 0 0 0 1px rgba(255,255,255,.25) inset; }
+  }
+  .song-hint{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-size:.78rem;
+    font-style: italic;
+    color:#a97d5d;
+    margin-top: -18px;
+    margin-bottom: 22px;
+  }
+
+  .dedication-body p{
+    font-size: clamp(1rem, 2.3vw, 1.15rem);
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 15px;
+    text-align: justify;
+  }
+  .dedication-body p:last-child{ margin-bottom:0; }
+
   @media (max-width:480px){
     .letter-card{ padding: 44px 22px 34px; }
     .inner-border{ inset:18px; }
@@ -580,6 +726,7 @@
     .envelope-wrap{ width:220px; height:150px; }
     .env-body{ height:118px; }
     .env-flap{ height:85px; }
+    .dedication-card{ padding: 44px 20px 32px; }
   }
 </style>
 </head>
@@ -617,6 +764,7 @@
 
 <!-- ============ AUDIO ============ -->
 <audio id="bgm" src="amor.mp3" loop preload="auto"></audio>
+<audio id="songMitodo" src="mitodo.mp3" loop preload="auto"></audio>
 
 <!-- ============ LETTER ============ -->
 <section id="letterScene">
@@ -648,17 +796,6 @@
 
         <p>Eres linda, única, sonriente, brillante, amable y cariñosa. AMO absolutamente todo de ti. Eres tan perfecta, tan linda, y eres todo para mí. Tú me haces querer todo y ser todo para ti, porque AMO tanto tu corazoncito, ese que late lleno de bondad y de luz.</p>
 
-        <figure class="photo-frame">
-          <img src="miprincesa.jpg" alt="Nosotros dos">
-          <figcaption class="photo-caption">Por un AMO Tan Fuerte, Inmenso Y Eterno</figcaption>
-        </figure>
-        <p>Fuerte Como El Sol Tan abrasador, tan Cálido y como él, ÚNICO.</p>
-        <p>Inmenso como El Vacío y el extenso Espacio, lleno de misterios y de lucidez, de Cosas tan indescriptibles y, Tan hermoso aún así.</p>
-        <p>Eterno, como la historia de miles de galaxias, escrita en cada estrella y recordada con cada brillo.</p>
-        <p>Todas éstas y mil formas mas TE QUIERO, y quiero que siempre lo recuerdes, porqué para mí, eres toda mi razón, existencia y eres verdadera y sinceramente todo para mí.</p>
-
-
-
         <p>Eres lo mejor que tengo. Eres la mejor novia, la novia más hermosa, linda y radiante que pudiera existir. No puedo describir todo lo que eres, porque las palabras, ni siquiera todas las que existen, alcanzan para decirte todo lo que significas para mí.</p>
 
         <p class="no-indent" style="text-align:center; margin-top:10px;">Y aun así, seguiré intentándolo cada día de mi vida.</p>
@@ -669,6 +806,12 @@
         <button class="love-heart-btn" id="loveBtn">♥</button>
         <div class="love-counter">te amo <b id="loveCount">0</b> veces… y sigo contando</div>
         <div class="love-msg" id="loveMsg"></div>
+      </div>
+
+      <div class="secret-wrap">
+        <button class="secret-btn" id="secretBtn">
+          <span class="secret-icon">🔒</span>tengo un secreto para ti…
+        </button>
       </div>
 
       <div class="divider"><span>❦</span></div>
@@ -682,6 +825,36 @@
     </div>
   </div>
 </section>
+
+<!-- ============ MODAL SECRETO: DEDICATORIA ============ -->
+<div id="dedicationModal">
+  <div class="dedication-card">
+    <button class="dedication-close" id="dedicationClose">✕</button>
+
+    <div class="dedication-eyebrow">Una dedicatoria para ti</div>
+    <div class="dedication-title">Por un amor tan fuerte, inmenso y eterno</div>
+
+    <figure class="photo-frame">
+      <img src="miprincesa.jpg" alt="Nosotros dos">
+      <figcaption class="photo-caption">tú y yo</figcaption>
+    </figure>
+
+    <div>
+      <button class="song-btn" id="songBtn">
+        <span class="note-icon">♪</span>
+        <span id="songBtnLabel">Escuchar esta dedicatoria</span>
+      </button>
+      <span class="song-hint" id="songHint">toca para reproducir "Mi Todo"</span>
+    </div>
+
+    <div class="dedication-body">
+      <p>Fuerte como el sol, tan abrasador, tan cálido y, como él, único.</p>
+      <p>Inmenso como el vacío y el extenso espacio, lleno de misterios y de lucidez, de cosas tan indescriptibles y, aun así, tan hermoso.</p>
+      <p>Eterno, como la historia de miles de galaxias, escrita en cada estrella y recordada con cada brillo.</p>
+      <p>Todas éstas y mil formas más te quiero, y quiero que siempre lo recuerdes, porque para mí eres toda mi razón, mi existencia, y eres verdadera y sinceramente todo para mí.</p>
+    </div>
+  </div>
+</div>
 
 <script>
   // ---------- stars ----------
@@ -787,17 +960,14 @@
       // STAGE 2 — seal breaks, light bursts out, envelope zooms in
       envelopeWrap.classList.add('open');
 
-      // golden sparkles + hearts erupting together
       heartBurst(cx, cy, 16, 'burst-heart', ['♥','❤','💛']);
       heartBurst(cx, cy, 20, 'sparkle-particle', ['✦','✧','⋆','·']);
 
-      // brief warm flash at the peak of the light burst
       setTimeout(() => {
         flashOverlay.classList.add('on');
         setTimeout(()=> flashOverlay.classList.remove('on'), 380);
       }, 420);
 
-      // STAGE 3 — second wave as the flap fully opens
       setTimeout(() => {
         heartBurst(cx, cy - 10, 14, 'burst-heart', ['♥','❤']);
         heartBurst(cx, cy - 10, 16, 'sparkle-particle', ['✦','✧','⋆']);
@@ -849,8 +1019,7 @@
     'siempre, sin pausa',
     'eres mi hogar',
     'Siempre Tú'
-    
-];
+  ];
   loveBtn.addEventListener('click', (e) => {
     count++;
     loveCount.textContent = count;
@@ -865,6 +1034,99 @@
 
     const rect = loveBtn.getBoundingClientRect();
     heartBurst(rect.left + rect.width/2, rect.top + rect.height/2, 6, 'mini-heart');
+  });
+
+  // ---------- secret dedication modal ----------
+  const secretBtn = document.getElementById('secretBtn');
+  const dedicationModal = document.getElementById('dedicationModal');
+  const dedicationClose = document.getElementById('dedicationClose');
+
+  function openModal(){
+    dedicationModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    dedicationModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  secretBtn.addEventListener('click', () => {
+    openModal();
+    const rect = secretBtn.getBoundingClientRect();
+    heartBurst(rect.left + rect.width/2, rect.top + rect.height/2, 10, 'sparkle-particle', ['✦','✧','⋆']);
+  });
+  dedicationClose.addEventListener('click', closeModal);
+  dedicationModal.addEventListener('click', (e) => {
+    if(e.target === dedicationModal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && dedicationModal.classList.contains('open')) closeModal();
+  });
+
+  // ---------- song toggle: mitodo.mp3 ----------
+  const songMitodo = document.getElementById('songMitodo');
+  const songBtn = document.getElementById('songBtn');
+  const songBtnLabel = document.getElementById('songBtnLabel');
+  const songHint = document.getElementById('songHint');
+  let songPlaying = false;
+
+  function fadeAudio(audio, targetVol, duration, onDone){
+    const steps = 20;
+    const stepTime = duration / steps;
+    const startVol = audio.volume;
+    const diff = targetVol - startVol;
+    let i = 0;
+    const iv = setInterval(() => {
+      i++;
+      audio.volume = Math.max(0, Math.min(1, startVol + diff * (i / steps)));
+      if(i >= steps){
+        clearInterval(iv);
+        if(onDone) onDone();
+      }
+    }, stepTime);
+  }
+
+  songBtn.addEventListener('click', () => {
+    if(!songPlaying){
+      fadeAudio(bgm, 0, 500, () => bgm.pause());
+
+      songMitodo.volume = 0;
+      songMitodo.currentTime = 0;
+      songMitodo.play().catch(()=>{});
+      fadeAudio(songMitodo, 0.85, 900);
+
+      songPlaying = true;
+      songBtn.classList.add('playing');
+      songBtnLabel.textContent = 'Pausar esta canción';
+      songHint.textContent = 'sonando: "Mi Todo"';
+    } else {
+      fadeAudio(songMitodo, 0, 500, () => songMitodo.pause());
+
+      if(bgm.paused){
+        bgm.volume = 0;
+        bgm.play().catch(()=>{});
+      }
+      fadeAudio(bgm, 0.85, 900);
+
+      songPlaying = false;
+      songBtn.classList.remove('playing');
+      songBtnLabel.textContent = 'Escuchar esta dedicatoria';
+      songHint.textContent = 'toca para reproducir "Mi Todo"';
+    }
+  });
+
+  // if user closes modal while "Mi Todo" is playing, fade it out and resume bgm
+  dedicationClose.addEventListener('click', () => {
+    if(songPlaying){
+      fadeAudio(songMitodo, 0, 500, () => songMitodo.pause());
+      bgm.volume = 0;
+      bgm.play().catch(()=>{});
+      fadeAudio(bgm, 0.85, 900);
+      songPlaying = false;
+      songBtn.classList.remove('playing');
+      songBtnLabel.textContent = 'Escuchar esta dedicatoria';
+      songHint.textContent = 'toca para reproducir "Mi Todo"';
+    }
   });
 </script>
 
